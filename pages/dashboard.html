@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vault</title>
+    <link rel="stylesheet" href="../css/main.css">
+</head>
+
+<style>
+html{
+    width: 100%;
+}
+
+p, h3{
+    margin: 0;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.star-path {
+  fill: none;
+  stroke: #9aa4b2;
+  stroke-width: 2;
+}
+
+.star.active .star-path {
+  fill: #facc15;
+  stroke: #facc15;
+}
+
+.eye.active .eye-closed {
+  display: none;
+}
+
+.icon.filter { 
+    width: 20px; 
+    height: 20px; 
+}
+
+
+.content button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: gray;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.components{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.components > .search-wrapper{
+    flex: 1;
+}
+
+.components > .search-wrapper #search-input{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters > button, #logout-btn, .components > button{
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #717e8f;
+    padding: 8px 16px;
+    font-size: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.filters > .btn-active {
+    background-color: #155dfc;
+    border: none;
+}
+
+.right > button{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blackbox{
+    background-color: #0f172b;
+    padding: 8px 14px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.card{
+    background-color: #1d293d;
+    border-radius: 10px;
+    padding: 24px;
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.email-block{
+    background-color: #314158;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;;
+    align-items: center;
+}
+
+.search-wrapper .icon.search {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    color: #9aa4b2;
+    pointer-events: none;
+}
+
+#search-input{
+    background-color: #1d293d;
+    border: 1px solid #717e8f;
+    padding: 8px 14px 8px 40px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.pass{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.pass > .blackbox{
+    flex: 1;
+}
+
+.password-block > div + p {
+    margin-top: 20px;
+}
+
+.password-block > p + div {
+    margin-top: 10px;
+}
+
+.usr{
+    width: 100%;
+}
+
+.mail-and-cop{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.mail-and-cop > .blackbox{
+    flex: 1;
+}
+
+h3{
+    display: inline-block;
+}
+
+.mail-and-link{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.icon.logout {
+    width: 18px;
+    height: 18px;
+}
+
+.top-card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content{
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card{
+    padding: 35px;
+}
+
+#add-password{
+    background-color: #155dfc;
+    border-color: #155dfc;
+    color: white;
+}
+
+</style>
+
+
+<body>
+    <div class="top">
+        <div class="left">
+            <h3>SecureVault</h3>
+            <p id="user-email"></p>
+        </div>
+        <div class="right">
+            <button id="logout-btn">
+                <svg class="icon logout" xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+
+                    <path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/>
+                    <path d="M16 17l5-5-5-5"/>
+                    <path d="M21 12H9"/>
+                </svg>
+                Logout
+            </button>
+        </div>
+    </div>
+    <div class="components">
+        <div class="search-wrapper">
+            <svg class="icon search" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="search-input" placeholder="Search...">
+        </div>
+        <button id="generate-password-btn">Generate Password</button>
+        <button id="add-password"><span style="margin-right: 5px;">+</span> Add Password</button>
+    </div>
+    <div class="filters">
+        <!-- Filter Icon -->
+        <svg class="icon filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16l-6.5 7.5V19l-3 1.5v-7L4 6z"/>
+        </svg>
+
+
+        <button id="all" class="btn-active">All</button>
+        <button id="email">Email</button>
+        <button id="Development">Development</button>
+        <button id="Entertainment">Entertainment</button>
+        <button id="Shopping">Shopping</button>
+        <button id="Work">Work</button>
+    </div>
+    <div class="content">
+        <div class="card">
+
+            <div class="top-card">
+                <div class="mail-and-link">
+                    <h3>Gmail</h3>
+                    <button class="open-link">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            d="M14 3h7v7m0-7L10 14"/>
+                        <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            d="M5 10v11h11"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="icons">
+                    
+
+                    <!-- Star Icon -->
+                    <button class="btn-favourite">
+                        <svg class="icon star" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path class="star-path"
+                            d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l2.036 6.26a1 1 0 00.95.69h6.588c.969 0 1.371 1.24.588 1.81l-5.33 3.872a1 1 0 00-.364 1.118l2.036 6.26c.3.921-.755 1.688-1.54 1.118l-5.33-3.872a1 1 0 00-1.175 0l-5.33 3.872c-.784.57-1.838-.197-1.539-1.118l2.036-6.26a1 1 0 00-.364-1.118L.887 11.687c-.783-.57-.38-1.81.588-1.81h6.588a1 1 0 00.95-.69l2.036-6.26z"/>
+                        </svg>
+                    </button>
+
+                     <!-- Trash Icon -->
+                    <button class="btn-delete">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 7l-1 14H6L5 7m5 4v6m4-6v6M9 7V4h6v3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <p class="user-email" data-account-id="user@gmail.com">user@gmail.com</p>
+            <div class="email-block" data-category="email">Email</div>
+
+            <div class="password-block">
+                <p>Username</p>
+                <div class="usr">
+                    <div class="mail-and-cop">
+                        <div class="blackbox">
+                            <p class="user-email">user@gmail.com</p>
+                        </div>
+
+                        <!-- Copy Button icon -->
+                        <button class="btn-copy-username">
+                            <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
+                                <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <p>Password</p>
+                <div class="pass">
+                    <div class="blackbox">
+                        *******
+                    </div>
+
+                    <!-- Eye Icon To Show -->
+                    <button class="icon-btn">
+                        <svg class="icon eye" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            
+                            <!-- Normal Eye -->
+                            <path class="eye-open"
+                            d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                            stroke="currentColor" stroke-width="2" fill="none"/>
+                            <circle class="eye-open"
+                            cx="12" cy="12" r="3"
+                            stroke="currentColor" stroke-width="2" fill="none"/>
+
+                            <!-- Cross Line -->
+                            <line class="eye-closed"
+                            x1="3" y1="3" x2="21" y2="21"
+                            stroke="currentColor" stroke-width="2"/>
+
+                        </svg>
+                    </button> 
+
+                     <!-- Copy Button Icon -->
+                    <button class="btn-copy-password">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
+                            <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        </svg>
+                    </button>
+                </div>
+                <p id="modified">Last modified 26.2.2026</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', () => {
+                star.classList.toggle('active');
+                });
+            });
+
+        const eye = document.querySelector('.eye');
+        const passwordInput = document.querySelector('#password');
+
+        eye.addEventListener('click', () => {
+        eye.classList.toggle('active');
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+        } else {
+            passwordInput.type = "password";
+        }
+        });
+        
+    </script>
+</body>
+</html>

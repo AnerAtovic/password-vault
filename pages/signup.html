@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Password Manager</title>
+  <link rel="stylesheet" href="../css/pages/auth.css">
+</head>
+
+<body>
+  <a href="/index.html" class="home">Back to home</a>
+  <p class="big">Create your account</p>
+  <p>Start securing your passwords today</p>
+  <form id="signupform">
+    <div class="container">
+      <p id="signupmsg"></p>
+      <label for="name">Name</label>
+      <input type="text" placeholder="John Doe" id="name" required>
+
+      <label for="email">Email</label>
+      <input type="text" placeholder="you@example.com" id="email" required>
+
+      <label for="pw">Password</label>
+      <input type="password" placeholder="At least 8 characters" id="pw" required>
+
+      <label for="pw-confirm">Repeat Password</label>
+      <input type="password" placeholder="Confirm your password" id="pw-confirm" required>
+
+      <div class="clearfix">
+        <button type="submit" class="signupbtn">Create Account</button>
+      </div>
+
+      <p>Already have an account? <a href="signin.html">Log in</a></p>
+
+    </div>
+  </form>
+
+  <script src="../js/pages/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Manager</title>
+    <link rel="stylesheet" href="../css/pages/auth.css">
+</head>
+<body>
+     <a href="/index.html" class="home">Back to home</a>
+    <p class="big">Welcome back</p>
+    <p>Log in to access your secure vault</p>
+     <form id="signinform">
+  <div class="container">
+    <p id="signinmsg"></p>
+    <label for="email">Email</label>
+    <input type="text" placeholder="you@example.com" id="email" required>
+
+    <label for="pw">Password</label>
+    <input type="password" placeholder="Enter your password" id="pw" required>
+
+    <div class="clearfix">
+      <button type="submit" class="signupbtn">Log In</button>
+    </div>
+
+    <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+  
+  </div>
+</form>
+
+<script src="../js/pages/signin.js"></script>
+</body>
+</html>

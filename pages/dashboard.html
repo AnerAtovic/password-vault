@@ -1,250 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vault</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages/dashboard.css">
 </head>
-
-<style>
-html{
-    width: 100%;
-}
-
-p, h3{
-    margin: 0;
-}
-
-.icon {
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.star-path {
-  fill: none;
-  stroke: #9aa4b2;
-  stroke-width: 2;
-}
-
-.star.active .star-path {
-  fill: #facc15;
-  stroke: #facc15;
-}
-
-.eye.active .eye-closed {
-  display: none;
-}
-
-.icon.filter { 
-    width: 20px; 
-    height: 20px; 
-}
-
-
-.content button{
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    color: gray;
-}
-
-.top{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.filters{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-    gap: 10px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.components{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 20px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.components > .search-wrapper{
-    flex: 1;
-}
-
-.components > .search-wrapper #search-input{
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.filters > button, #logout-btn, .components > button{
-    background-color: transparent;
-    color: white;
-    border-radius: 5px;
-    border: 1px solid #717e8f;
-    padding: 8px 16px;
-    font-size: inherit;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.filters > .btn-active {
-    background-color: #155dfc;
-    border: none;
-}
-
-.right > button{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.blackbox{
-    background-color: #0f172b;
-    padding: 8px 14px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-}
-
-.card{
-    background-color: #1d293d;
-    border-radius: 10px;
-    padding: 24px;
-    width: 380px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.email-block{
-    background-color: #314158;
-    border-radius: 5px;
-    padding: 5px 10px;
-    display: inline-block;
-    width: fit-content;
-}
-
-.search-wrapper {
-    position: relative;
-    display: flex;
-    flex-direction: row;;
-    align-items: center;
-}
-
-.search-wrapper .icon.search {
-    position: absolute;
-    left: 12px;
-    width: 20px;
-    height: 20px;
-    color: #9aa4b2;
-    pointer-events: none;
-}
-
-#search-input{
-    background-color: #1d293d;
-    border: 1px solid #717e8f;
-    padding: 8px 14px 8px 40px;
-    border-radius: 5px;
-    color: white;
-    font-size: 16px;
-}
-
-.pass{
-    margin-top: 5px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.pass > .blackbox{
-    flex: 1;
-}
-
-.password-block > div + p {
-    margin-top: 20px;
-}
-
-.password-block > p + div {
-    margin-top: 10px;
-}
-
-.usr{
-    width: 100%;
-}
-
-.mail-and-cop{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-}
-
-.mail-and-cop > .blackbox{
-    flex: 1;
-}
-
-h3{
-    display: inline-block;
-}
-
-.mail-and-link{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.icon.logout {
-    width: 18px;
-    height: 18px;
-}
-
-.top-card{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.content{
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.card{
-    padding: 35px;
-}
-
-#add-password{
-    background-color: #155dfc;
-    border-color: #155dfc;
-    color: white;
-}
-
-</style>
-
 
 <body>
     <div class="top">
@@ -391,27 +153,85 @@ h3{
             </div>
 
         </div>
-    </div>
-    <script>
-        document.querySelectorAll('.star').forEach(star => {
-            star.addEventListener('click', () => {
-                star.classList.toggle('active');
-                });
-            });
-
-        const eye = document.querySelector('.eye');
-        const passwordInput = document.querySelector('#password');
-
-        eye.addEventListener('click', () => {
-        eye.classList.toggle('active');
-
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-        } else {
-            passwordInput.type = "password";
-        }
-        });
         
-    </script>
+        <dialog id="add-password-modal">
+            <h3>Add Password</h3>
+            
+            <form>
+                <button id="submit-password" type="submit">Submit</button>
+            </form>
+        </dialog>
+
+
+
+        <dialog id="generate-password-modal">
+            <div class="modal-top">
+                <h2>Password Generator</h2>
+                <button class="btn-clear" id="close-generate-modal">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-strength">
+                <p>Generated Password</p>
+                <p id="strength">Medium</p>
+            </div>
+
+            <div class="pass-and-buttons">
+                <input type="text" id="generated-password" readonly>
+                <button id="regenerate" class="btn-clear">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 0 0-15-6"/>
+                        <polyline points="6 3 6 9 12 9"/>
+                        <path d="M3 12a9 9 0 0 0 15 6"/>
+                        <polyline points="18 21 18 15 12 15"/>
+                    </svg>
+                </button>
+                <button id="copy-generated" class="btn-clear">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
+                        <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="modal-options">
+                <div class="modal-slider">
+                    <label for="password-length">Length: <span id="length-value">12</span></label>
+                    <input type="range" id="password-length" name="length" min="8" max="32" value="12">
+                    <p><span>8</span><span>32</span></p>
+                </div>
+
+                <div class="check-boxes">
+                    <label class="form-control"><input type="checkbox" id="uppercase" checked><span>Uppercase (A-Z)</span></label>
+                    <label class="form-control"><input type="checkbox" id="lowercase" checked><span>Lowercase (a-z)</span></label>
+                    <label class="form-control"><input type="checkbox" id="numbers" checked><span>Numbers (0-9)</span></label>
+                    <label class="form-control"><input type="checkbox" id="symbols" checked><span>Symbols (!@#$%...)</span></label>
+                </div>
+            </div>
+
+            <div class="modal-big-button">
+                <button class="done" id="generate-modal-done">Done</button>
+            </div>
+        </dialog>
+
+
+
+
+
+
+    </div>
+    <script src="../js/pages/dashboard.js"></script>
+    <script src="../js/modals/add-password.modal.js"> </script>
+    <script src="../js/modals/generate-password.modal.js"> </script>
 </body>
 </html>

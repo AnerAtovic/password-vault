@@ -1,0 +1,403 @@
+html {
+    width: 100%;
+}
+
+p, h3 {
+    margin: 0;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.star-path {
+    fill: none;
+    stroke: #9aa4b2;
+    stroke-width: 2;
+}
+
+.star.active .star-path {
+    fill: #facc15;
+    stroke: #facc15;
+}
+
+.eye.active .eye-closed {
+    display: none;
+}
+
+.icon.filter {
+    width: 20px;
+    height: 20px;
+}
+
+.content button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: gray;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.components {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.components > .search-wrapper {
+    flex: 1;
+}
+
+.components > .search-wrapper #search-input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.filters > button, #logout-btn, .components > button {
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid #717e8f;
+    padding: 8px 16px;
+    font-size: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.filters > .btn-active, #add-password {
+    background-color: #155dfc;
+    border: none;
+}
+
+.right > button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.blackbox {
+    background-color: #0f172b;
+    inline-size: 100%;
+    padding: 8px 14px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.card {
+    background-color: #1d293d;
+    border-radius: 10px;
+    padding: 24px;
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.top-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.mail-and-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.email-block {
+    background-color: #314158;
+    border-radius: 5px;
+    padding: 5px 10px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.search-wrapper .icon.search {
+    position: absolute;
+    left: 12px;
+    width: 20px;
+    height: 20px;
+    color: #9aa4b2;
+    pointer-events: none;
+}
+
+#search-input {
+    background-color: #1d293d;
+    border: 1px solid #717e8f;
+    padding: 8px 14px 8px 40px;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+}
+
+.pass {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.pass > .blackbox {
+    flex: 1;
+}
+
+.password-block > div + p {
+    margin-top: 20px;
+}
+
+.password-block > p + div {
+    margin-top: 10px;
+}
+
+.usr {
+    width: 100%;
+}
+
+/* Bugged a bit */
+#generate-password-modal:not([open]) {
+    display: none;
+}
+
+#generate-password-modal {
+    background: linear-gradient(to right, #192438, #1b263a);
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 24px;
+    color: white;
+    width: 480px;
+    max-width: 90vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+#generate-password-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.modal-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.modal-top h2 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.modal-strength {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.pass-and-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    gap: 6px;
+}
+
+.pass-and-buttons #generated-password {
+    flex: 1;
+    background-color: #0f172b;
+    border: 1px solid #314158;
+    border-radius: 5px;
+    padding: 8px 14px;
+    color: white;
+    font-size: 1rem;
+}
+
+.modal-options {
+    width: 100%;
+}
+
+.modal-slider {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-slider label {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-block: 10px;
+}
+
+.modal-slider input[type="range"] {
+    width: 100%;
+}
+
+.modal-slider > p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-block: 6px;
+    color: #62748e;
+}
+
+#length-value {
+    color: #50a2ff;
+}
+
+.check-boxes {
+    display: flex;
+    flex-direction: column;
+    margin-block: 20px;
+    gap: 0.75rem;
+}
+
+.check-boxes label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+}
+
+.check-boxes input[type="checkbox"] {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: #2563eb;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.check-boxes span {
+    color: #cbd5e1;
+}
+
+.modal-big-button {
+    width: 100%;
+}
+
+#generate-password-modal .done {
+    width: 100%;
+    background-color: #155dfc;
+    border: none;
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.done:hover {
+    background-color: #0d3c9e;
+}
+
+.btn-clear {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-clear:hover {
+    background-color: #314158;
+    border-radius: 15px;
+}
+
+.mail-and-cop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+button{
+    border-radius: 5px;
+}
+
+.content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+dialog{
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+dialog::backdrop {
+    background-color: rgba (0 , 0 , 0 , 0.7) ; 
+    backdrop-filter: blur (3 px ) ; 
+}
+
+
+.form-control{
+    font-family: inherit;
+    font-size: 2rem;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 2em auto;
+    gap: 1em;
+}
+
+input[type="range"]{
+    accent-color: #2563eb;
+}
+
+#strength{
+    padding: 4px 8px;
+    border-radius: 4px;
+}

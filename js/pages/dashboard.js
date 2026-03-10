@@ -10,3 +10,5 @@ const passwordInput = document.querySelector('.blackbox p');
 eye.addEventListener('click', () => {
     eye.classList.toggle('active');
 });
+
+

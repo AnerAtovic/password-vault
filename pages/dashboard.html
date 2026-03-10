@@ -14,6 +14,7 @@
             <h3>SecureVault</h3>
             <p id="user-email"></p>
         </div>
+
         <div class="right">
             <button id="logout-btn">
                 <svg class="icon logout" xmlns="http://www.w3.org/2000/svg" 
@@ -29,6 +30,7 @@
             </button>
         </div>
     </div>
+
     <div class="components">
         <div class="search-wrapper">
             <svg class="icon search" xmlns="http://www.w3.org/2000/svg"
@@ -41,8 +43,9 @@
             <input type="text" id="search-input" placeholder="Search...">
         </div>
         <button id="generate-password-btn">Generate Password</button>
-        <button id="add-password"><span style="margin-right: 5px;">+</span> Add Password</button>
+        <button id="add-password-btn"><span style="margin-right: 5px;">+</span> Add Password</button>
     </div>
+
     <div class="filters">
         <!-- Filter Icon -->
         <svg class="icon filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -155,10 +158,56 @@
         </div>
         
         <dialog id="add-password-modal">
-            <h3>Add Password</h3>
+            <div class="modal-top add-pass">
+                <h2>Add New Password</h2>
+                <button class="btn-clear" id="close-add-modal">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
             
-            <form>
-                <button id="submit-password" type="submit">Submit</button>
+            <form action="" id="add-password-form">
+                <div>
+                    <label for="title">Title *</label>
+                    <input type="text" id="title" placeholder="eg., Gmail, GitHub" required>
+                </div>
+
+                <div>
+                    <label for="username-email">Username / Email *</label>
+                    <input type="text" id="username-email" placeholder="Username / Email" required>
+                </div>
+                
+                <div>
+                    <label for="password">Password *</label>
+                    <input type="text" id="password" placeholder="Enter Password" required>
+                </div>
+
+                <div>
+                    <label for="url">URL (optional)</label>
+                    <input type="text" id="url" placeholder="https://example.com">
+                </div>
+
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                            <option value="General" selected>General</option>
+                            <option value="Email">Email</option>
+                            <option value="Development">Development</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Work">Work</option>
+                    </select>
+                </div>
+
+                <div class="bottom-buttons">
+                    <button id="cancel-add-password-btn" type="submit">Cancel</button>
+                    <button id="submit-password" type="submit">Add Password</button>
+                </div>
             </form>
         </dialog>
 
@@ -206,23 +255,42 @@
 
             <div class="modal-options">
                 <div class="modal-slider">
-                    <label for="password-length">Length: <span id="length-value">12</span></label>
+                    <label for="password-length" class="text-slate">Length <span id="length-value">12</span></label>
                     <input type="range" id="password-length" name="length" min="8" max="32" value="12">
                     <p><span>8</span><span>32</span></p>
                 </div>
 
                 <div class="check-boxes">
-                    <label class="form-control"><input type="checkbox" id="uppercase" checked><span>Uppercase (A-Z)</span></label>
-                    <label class="form-control"><input type="checkbox" id="lowercase" checked><span>Lowercase (a-z)</span></label>
-                    <label class="form-control"><input type="checkbox" id="numbers" checked><span>Numbers (0-9)</span></label>
-                    <label class="form-control"><input type="checkbox" id="symbols" checked><span>Symbols (!@#$%...)</span></label>
+                    <label class="form-control"><input type="checkbox" id="uppercase" checked><span class="text-slate">Uppercase (A-Z)</span></label>
+                    <label class="form-control"><input type="checkbox" id="lowercase" checked><span class="text-slate">Lowercase (a-z)</span></label>
+                    <label class="form-control"><input type="checkbox" id="numbers" checked><span class="text-slate">Numbers (0-9)</span></label>
+                    <label class="form-control"><input type="checkbox" id="symbols" checked><span class="text-slate">Symbols (!@#$%...)</span></label>
                 </div>
             </div>
 
             <div class="modal-big-button">
                 <button class="done" id="generate-modal-done">Done</button>
             </div>
+
         </dialog>
+
+        <p id="copy-msg">Copied to clipboard!</p>
+
+        <div class="password-added-successfully">
+            <div class="contents">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
+                    <circle cx="10" cy="10" r="9" fill="white"/>
+                    <path
+                        d="M6 10.2L8.6 12.8L14 7.4"
+                        stroke="black"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+                <p>Password added successfully!</p>
+            </div>
+        </div>
 
 
 

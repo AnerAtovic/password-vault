@@ -65,6 +65,10 @@ newPassword.addEventListener('click', () => {
 
 document.getElementById('copy-generated').addEventListener('click', () => {
     navigator.clipboard.writeText(generatedPasswordDisplay.value);
+    document.getElementById('copy-msg').style.display = 'block';
+    setTimeout(() => {
+        document.getElementById('copy-msg').style.display = 'none';
+    }, 2000);
 });
 
 function generatePassword(length, includeUppercase, includeLowercase, includeNumbers, includeSymbols) {

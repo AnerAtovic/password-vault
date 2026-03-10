@@ -91,7 +91,7 @@ p, h3 {
     gap: 6px;
 }
 
-.filters > .btn-active, #add-password {
+.filters > .btn-active, #add-password-btn {
     background-color: #155dfc;
     border: none;
 }
@@ -200,26 +200,27 @@ p, h3 {
 }
 
 /* Bugged a bit */
-#generate-password-modal:not([open]) {
+#generate-password-modal:not([open]), #add-password-modal:not([open]) {
     display: none;
 }
 
-#generate-password-modal {
+#generate-password-modal, #add-password-modal {
     background: linear-gradient(to right, #192438, #1b263a);
     border: none;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 24px;
     color: white;
-    width: 480px;
-    max-width: 90vw;
+    width: calc(100% - 2rem); 
+    max-width: 448px;
+    padding: 24px;
+    box-sizing: border-box;   
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;   
     gap: 16px;
 }
 
-#generate-password-modal::backdrop {
+#generate-password-modal::backdrop, #add-password-modal::backdrop {
     background: rgba(0, 0, 0, 0.6);
 }
 
@@ -254,11 +255,17 @@ p, h3 {
 .pass-and-buttons #generated-password {
     flex: 1;
     background-color: #0f172b;
-    border: 1px solid #314158;
-    border-radius: 5px;
-    padding: 8px 14px;
+    /* border: 1px solid #314158; */
+    border: none;
+    border-radius: 10px;
+    padding: 12px 16px;
     color: white;
     font-size: 1rem;
+}
+
+/* This needs to bedone to a blackbox class since we have a bunch of these make it modular later!!! */
+#generated-password:focus{
+    outline: none;
 }
 
 .modal-options {
@@ -324,15 +331,19 @@ p, h3 {
     width: 100%;
 }
 
-#generate-password-modal .done {
+#generate-password-modal .done, #submit-password, #cancel-add-password-btn {
     width: 100%;
     background-color: #155dfc;
     border: none;
     color: white;
     border-radius: 10px;
-    padding: 15px;
-    font-size: 1.5rem;
+    padding: 12px 16px;
+    font-size: 1rem;
     cursor: pointer;
+}
+
+#cancel-add-password-btn {
+    background-color: #334155;
 }
 
 .done:hover {
@@ -386,7 +397,7 @@ dialog::backdrop {
 
 .form-control{
     font-family: inherit;
-    font-size: 2rem;
+    font-size: 1rem;
     line-height: 1.1;
     display: grid;
     grid-template-columns: 2em auto;
@@ -398,6 +409,102 @@ input[type="range"]{
 }
 
 #strength{
+    font-size: 12px;
     padding: 4px 8px;
     border-radius: 4px;
 }
+
+.text-slate{
+    color: #CBD5E1;
+}
+
+.modal-slider p{
+    margin-inline: 10px;
+    color: #62748e;
+    font-size: 12px;
+}
+
+#copy-msg{
+    display: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
+    color: black;
+    padding: 18px 16px;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+}
+
+
+/* Practice reasons this is being restyled again but should have been done modularly Correct In Future */
+
+#add-password-form label {
+    display: block;
+    color: #cbd5e1;
+    margin-bottom: 8px;
+}
+
+#add-password-form input, #add-password-form select {
+    width: 100%;
+    background-color: #0f172a;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 16px; 
+    border: 1px solid #334155;
+    box-sizing: border-box;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#add-password-form input:focus, #add-password-form select:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+#add-password-form > div:not(:last-child) {
+    margin-bottom: 16px;
+}
+
+.add-pass{
+    margin-bottom: 24px;
+}
+
+.bottom-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding-top: 16px;
+}
+
+.password-added-successfully {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 10000;
+    display: none; 
+    align-items: center;
+    gap: 12px;
+    background-color: #1e293b;   
+    border: 1px solid #334155;   
+    border-radius: 8px;          
+    padding: 16px 20px 12px 0;
+    color: white;                
+    font-size: 13px;             
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    inline-size: 25%;
+}
+
+.contents{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 20px;
+    gap: 10px;
+}
+
+
+

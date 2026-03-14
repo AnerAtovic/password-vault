@@ -1,3 +1,5 @@
+import { generatePassword, getPasswordStrength } from '../utils/generator.js';
+
 const modal = document.getElementById('generate-password-modal');
 const generateBtn = document.getElementById('generate-password-btn');
 const passwordLengthInput = document.getElementById('password-length');
@@ -71,50 +73,11 @@ document.getElementById('copy-generated').addEventListener('click', () => {
     }, 2000);
 });
 
-function generatePassword(length, includeUppercase, includeLowercase, includeNumbers, includeSymbols) {
-    const uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const lowercase = 'abcdefghijklmnopqrstuvwxyz';
-    const numbers = '0123456789';
-    const symbols = '!@#$%^&*()_+~`|}{[]:;?><,./-=';
-    let charset = '';
-
-    if (includeUppercase) charset += uppercase;
-    if (includeLowercase) charset += lowercase;
-    if (includeNumbers) charset += numbers;
-    if (includeSymbols) charset += symbols;
-
-    if (!charset) return '';
-
-    let generatedPassword = '';
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * charset.length);
-        generatedPassword += charset[randomIndex];
-    }
-    return generatedPassword;
-}
 
 function passwordStrength(){
     const displayStrength = document.getElementById('strength');
-    let strength = 0;
-    if(password.length >= 12) strength++;
-    if(password.length >= 16) strength++;
-    
-    if (includeUppercase && includeLowercase) strength++;
-    if (includeNumbers) strength++;
-    if (includeSymbols) strength++;
-
-    if(strength <= 2){
-        displayStrength.textContent = 'Weak';
-        displayStrength.style.backgroundColor = '#ef4444';
-        return;
-    }
-
-    if(strength <= 3){
-        displayStrength.textContent = 'Medium';
-        displayStrength.style.backgroundColor = '#eab308';
-        return;
-    }
-
-    displayStrength.textContent = 'Strong';
-    displayStrength.style.backgroundColor = '#22c55e';
+    const strength = getPasswordStrength(password, includeUppercase, includeLowercase, includeNumbers, includeSymbols);
+    displayStrength.textContent = strength.strength;
+    displayStrength.style.backgroundColor = strength.score === 1 ? '#ff4d4d' : strength.score === 2 ? '#ffcc00' : '#4CAF50';
 }
+

@@ -1,0 +1,87 @@
+/* Buttons */
+
+.btn {
+	background-color: transparent;
+	color: white;
+	border: 1px solid #717e8f;
+	border-radius: 5px;
+	padding: 8px 16px;
+	font-size: inherit;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.btn-active {
+	background-color: #155dfc;
+	border: none;
+}
+
+.btn-clear {
+	background: transparent;
+	border: none;
+	padding: 8px;
+	color: white;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	line-height: 0;
+	flex-shrink: 0;
+}
+
+.btn-clear .icon {
+	display: block;
+}
+
+.btn-clear:hover {
+	background-color: #314158;
+	border-radius: 15px;
+}
+
+.btn-modal-primary,
+.btn-modal-secondary {
+	width: 100%;
+	border: none;
+	color: white;
+	border-radius: 10px;
+	padding: 12px 16px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.btn-modal-primary {
+	background-color: #155dfc;
+}
+
+.btn-modal-primary:hover {
+	background-color: #0d3c9e;
+}
+
+.btn-modal-secondary {
+	background-color: #334155;
+}
+
+
+/* Shared blackbox field for card rows */
+
+.blackbox-sm {
+	flex: 1 1 0%;
+	min-width: 0;
+	width: 100%;
+	min-height: 36px;
+	box-sizing: border-box;
+	border: none;
+	border-radius: 4px;
+	padding: 8px 12px;
+	background-color: #0f172a;
+	color: #cbd5e1;
+	font-size: 14px;
+	line-height: 20px;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.blackbox-sm:focus {
+	outline: none;
+}

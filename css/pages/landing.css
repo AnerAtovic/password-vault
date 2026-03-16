@@ -1,0 +1,46 @@
+html{
+    padding: 48px 16px;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    max-height: 40px;
+    margin-bottom: 80px;
+    font-size: 20px;
+}
+
+.seperate{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+#login, #signup{
+    max-height: 40px;
+}
+
+#login{
+    border: none;
+}
+
+.center-main{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+}
+
+.big-logo{
+    background: #2563eb;
+    border-radius: 15px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

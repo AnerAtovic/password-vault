@@ -34,7 +34,7 @@ function generateCards(title, user, password, url, category) {
                                 </svg>
                             </button>
                         </div>
-                        <p>Type Of Account</p>
+                        <p>${user}</p>
                         <span>${category}</span>
                     </div>
                     <div class="rhs-btn">
@@ -98,7 +98,7 @@ function generateCards(title, user, password, url, category) {
                         </button>
                     </div>
                 </div>
-                <p>Last modified: 3/14/2026</p>
+                <p id="last-modified">Last modified: 3/14/2026</p>
              </div>
     `;
 

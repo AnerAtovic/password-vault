@@ -1,28 +1,41 @@
 /* Buttons */
 
 .btn {
-	background-color: transparent;
-	color: white;
-	border: 1px solid #717e8f;
-	border-radius: 5px;
-	padding: 8px 16px;
-	font-size: inherit;
-	cursor: pointer;
-	display: flex;
+	display: inline-flex;
 	align-items: center;
-	gap: 6px;
+	justify-content: center;
+	gap: 8px;
+	padding: 12px 16px;
+	border: 1px solid #334155;
+	border-radius: 8px;
+	background-color: #1e293b;
+	color: #cbd5e1;
+	font-size: 16px;
+	line-height: 1.5;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover {
+	background-color: #334155;
+	border-color: #475569;
 }
 
 .btn-active {
-	background-color: #155dfc;
-	border: none;
+	border-color: #2563eb;
+	color: #fff;
+}
+
+.btn-active:hover {
+	border-color: #1d4ed8;
 }
 
 .btn-clear {
 	background: transparent;
 	border: none;
 	padding: 8px;
-	color: white;
+	color: #fff;
 	cursor: pointer;
 	display: inline-flex;
 	align-items: center;
@@ -43,24 +56,33 @@
 .btn-modal-primary,
 .btn-modal-secondary {
 	width: 100%;
-	border: none;
-	color: white;
-	border-radius: 10px;
+	flex: 1 1 0;
 	padding: 12px 16px;
+	border: none;
+	border-radius: 8px;
+	color: #fff;
 	font-size: 1rem;
+	line-height: 1.5;
 	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
+.btn-active,
 .btn-modal-primary {
-	background-color: #155dfc;
+	background-color: #2563eb;
 }
 
+.btn-active:hover,
 .btn-modal-primary:hover {
-	background-color: #0d3c9e;
+	background-color: #1d4ed8;
 }
 
 .btn-modal-secondary {
-	background-color: #334155;
+	background-color: #475569;
+}
+
+.btn-modal-secondary:hover {
+	background-color: #64748b;
 }
 
 

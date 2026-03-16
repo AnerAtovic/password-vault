@@ -10,205 +10,209 @@
 </head>
 
 <body>
-    <div class="top">
-        <div class="left">
-            <h3>SecureVault</h3>
-            <p id="user-email"></p>
-        </div>
-
-        <div class="right">
-            <button id="logout-btn" class="btn">
-                <svg class="icon logout" xmlns="http://www.w3.org/2000/svg" 
+    <div class="main-content">
+        <div class="top">
+            <div class="left">
+                <h3>SecureVault</h3>
+                <p id="user-email"></p>
+            </div>
+            
+            <div class="right">
+                <button id="logout-btn" class="btn">
+                    <svg class="icon logout" xmlns="http://www.w3.org/2000/svg" 
                     viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
 
-                    <path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/>
-                    <path d="M16 17l5-5-5-5"/>
-                    <path d="M21 12H9"/>
-                </svg>
-                Logout
-            </button>
-        </div>
-    </div>
-
-    <div class="components">
-        <div class="search-wrapper">
-            <svg class="icon search" xmlns="http://www.w3.org/2000/svg"
-                 viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="11" r="7"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="search" id="search-input" placeholder="Search...">
-        </div>
-        <button id="generate-password-btn" class="btn">Generate Password</button>
-        <button id="add-password-btn" class="btn btn-active"><span style="margin-right: 5px;">+</span> Add Password</button>
-    </div>
-
-    <div class="filters">
-        <!-- Filter Icon -->
-        <svg class="icon filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 6h16l-6.5 7.5V19l-3 1.5v-7L4 6z"/>
-        </svg>
-
-
-        <button id="all" class="btn btn-active">All</button>
-        <button id="email" class="btn">Email</button>
-        <button id="Development" class="btn">Development</button>
-        <button id="Entertainment" class="btn">Entertainment</button>
-        <button id="Shopping" class="btn">Shopping</button>
-        <button id="Work" class="btn">Work</button>
-    </div>
-    <div class="content">
-        <div id="cards">
-            <!-- Cards will be generated here -->
-
-        </div>
-        
-        
-        <dialog id="add-password-modal">
-            <div class="modal-top add-pass">
-                <h2>Add New Password</h2>
-                <button class="btn-clear" id="close-add-modal">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                        <path d="M9 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h4"/>
+                        <path d="M16 17l5-5-5-5"/>
+                        <path d="M21 12H9"/>
                     </svg>
+                    Log Out
                 </button>
+            </div>
+        </div>
+        
+        <div class="components">
+            <div class="search-wrapper">
+                <svg class="icon search" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="7"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="search" id="search-input" placeholder="Search...">
+            </div>
+            <div class="search-buttons">
+                <button id="generate-password-btn" class="btn">Generate Password</button>
+                <button id="add-password-btn" class="btn btn-active"><span aria-hidden="true">+</span> Add Password</button>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <!-- Filter Icon -->
+            <svg class="icon filter" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 6h16l-6.5 7.5V19l-3 1.5v-7L4 6z"/>
+            </svg>
+
+
+            <button id="all" class="btn btn-active">All</button>
+            <button id="email" class="btn">Email</button>
+            <button id="Development" class="btn">Development</button>
+            <button id="Entertainment" class="btn">Entertainment</button>
+            <button id="Shopping" class="btn">Shopping</button>
+            <button id="Work" class="btn">Work</button>
+        </div>
+        <div class="content">
+            <div id="cards">
+                <!-- Cards will be generated here -->
+
             </div>
             
-            <form action="" id="add-password-form">
-                <div>
-                    <label for="title">Title *</label>
-                    <input type="text" id="title" name="title" placeholder="eg., Gmail, GitHub" required>
-                </div>
-
-                <div>
-                    <label for="username-email">Username / Email *</label>
-                    <input type="string" id="username-email" name="username-email" placeholder="Username / Email" required>
-                </div>
-                
-                <div>
-                    <label for="password">Password *</label>
-                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
-                </div>
-
-                <div>
-                    <label for="url">URL (optional)</label>
-                    <input type="url" id="url" name="url" placeholder="https://example.com">
-                </div>
-
-                <div>
-                    <label for="category">Category</label>
-                    <select id="category" name="category" required>
-                            <option value="General" selected>General</option>
-                            <option value="Email">Email</option>
-                            <option value="Development">Development</option>
-                            <option value="Entertainment">Entertainment</option>
-                            <option value="Shopping">Shopping</option>
-                            <option value="Work">Work</option>
-                    </select>
-                </div>
-
-                <div class="bottom-buttons">
-                    <button id="cancel-add-password-btn" class="btn-modal-secondary" type="submit">Cancel</button>
-                    <button id="submit-password" class="btn-modal-primary" type="submit">Add Password</button>
-                </div>
-            </form>
-        </dialog>
-
-
-
-        <dialog id="generate-password-modal">
-            <div class="modal-top">
-                <h2>Password Generator</h2>
-                <button class="btn-clear" id="close-generate-modal">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+            
+            <dialog id="add-password-modal">
+                <div class="modal-top add-pass">
+                    <h2>Add New Password</h2>
+                    <button class="btn-clear" id="close-add-modal">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </svg>
-                </button>
-            </div>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                
+                <form action="" id="add-password-form">
+                    <div>
+                        <label for="title">Title *</label>
+                        <input type="text" id="title" name="title" placeholder="eg., Gmail, GitHub" required>
+                    </div>
 
-            <div class="modal-strength">
-                <p>Generated Password</p>
-                <p id="strength">Medium</p>
-            </div>
+                    <div>
+                        <label for="username-email">Username / Email *</label>
+                        <input type="string" id="username-email" name="username-email" placeholder="Username / Email" required>
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                    </div>
 
-            <div class="pass-and-buttons">
-                <input type="text" id="generated-password" readonly>
-                <button id="regenerate" class="btn-clear">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                    <div>
+                        <label for="url">URL (optional)</label>
+                        <input type="url" id="url" name="url" placeholder="https://example.com">
+                    </div>
+                    
+                    <div>
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                                <option value="General" selected>General</option>
+                                <option value="Email">Email</option>
+                                <option value="Development">Development</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Shopping">Shopping</option>
+                                <option value="Work">Work</option>
+                            </select>
+                    </div>
+
+                    <div class="bottom-buttons">
+                        <button id="cancel-add-password-btn" class="btn-modal-secondary" type="submit">Cancel</button>
+                        <button id="submit-password" class="btn-modal-primary" type="submit">Add Password</button>
+                    </div>
+                </form>
+            </dialog>
+            
+            
+
+            <dialog id="generate-password-modal">
+                <div class="modal-top">
+                    <h2>Password Generator</h2>
+                    <button class="btn-clear" id="close-generate-modal">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 0-15-6"/>
-                        <polyline points="6 3 6 9 12 9"/>
-                        <path d="M3 12a9 9 0 0 0 15 6"/>
-                        <polyline points="18 21 18 15 12 15"/>
-                    </svg>
-                </button>
-                <button id="copy-generated" class="btn-clear">
-                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
-                        <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="modal-options">
-                <div class="modal-slider">
-                    <label for="password-length" class="text-slate">Length <span id="length-value">12</span></label>
-                    <input type="range" id="password-length" name="length" min="8" max="32" value="12">
-                    <p><span>8</span><span>32</span></p>
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
                 </div>
 
-                <div class="check-boxes">
-                    <label class="form-control"><input type="checkbox" id="uppercase" checked><span class="text-slate">Uppercase (A-Z)</span></label>
-                    <label class="form-control"><input type="checkbox" id="lowercase" checked><span class="text-slate">Lowercase (a-z)</span></label>
-                    <label class="form-control"><input type="checkbox" id="numbers" checked><span class="text-slate">Numbers (0-9)</span></label>
-                    <label class="form-control"><input type="checkbox" id="symbols" checked><span class="text-slate">Symbols (!@#$%...)</span></label>
+                <div class="modal-strength">
+                    <p>Generated Password</p>
+                    <p id="strength">Medium</p>
+                </div>
+
+                <div class="pass-and-buttons">
+                    <input type="text" id="generated-password" readonly>
+                    <button id="regenerate" class="btn-clear">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12a9 9 0 0 0-15-6"/>
+                            <polyline points="6 3 6 9 12 9"/>
+                            <path d="M3 12a9 9 0 0 0 15 6"/>
+                            <polyline points="18 21 18 15 12 15"/>
+                        </svg>
+                    </button>
+                    <button id="copy-generated" class="btn-clear">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
+                            <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="modal-options">
+                    <div class="modal-slider">
+                        <label for="password-length" class="text-slate">Length <span id="length-value">12</span></label>
+                        <input type="range" id="password-length" name="length" min="8" max="32" value="12">
+                        <p><span>8</span><span>32</span></p>
+                    </div>
+                    
+                    <div class="check-boxes">
+                        <label class="form-control"><input type="checkbox" id="uppercase" checked><span class="text-slate">Uppercase (A-Z)</span></label>
+                        <label class="form-control"><input type="checkbox" id="lowercase" checked><span class="text-slate">Lowercase (a-z)</span></label>
+                        <label class="form-control"><input type="checkbox" id="numbers" checked><span class="text-slate">Numbers (0-9)</span></label>
+                        <label class="form-control"><input type="checkbox" id="symbols" checked><span class="text-slate">Symbols (!@#$%...)</span></label>
+                    </div>
+                </div>
+                
+                <div class="modal-big-button">
+                    <button class="done btn-modal-primary" id="generate-modal-done">Done</button>
+                </div>
+
+            </dialog>
+
+            <p id="copy-msg">Copied to clipboard!</p>
+
+            <div class="password-added-successfully">
+                <div class="contents">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
+                        <circle cx="10" cy="10" r="9" fill="white"/>
+                        <path
+                            d="M6 10.2L8.6 12.8L14 7.4"
+                            stroke="black"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            />
+                        </svg>
+                    <p>Password added successfully!</p>
                 </div>
             </div>
+            
 
-            <div class="modal-big-button">
-                <button class="done btn-modal-primary" id="generate-modal-done">Done</button>
-            </div>
+            
 
-        </dialog>
 
-        <p id="copy-msg">Copied to clipboard!</p>
-
-        <div class="password-added-successfully">
-            <div class="contents">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
-                    <circle cx="10" cy="10" r="9" fill="white"/>
-                    <path
-                        d="M6 10.2L8.6 12.8L14 7.4"
-                        stroke="black"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-                </svg>
-                <p>Password added successfully!</p>
-            </div>
+            
         </div>
-
-
-
-
-
-
     </div>
     <script type="module" src="../js/pages/dashboard.js"></script>
     <script type="module" src="../js/modals/add-password.modal.js"> </script>

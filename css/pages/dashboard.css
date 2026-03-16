@@ -2,7 +2,8 @@ html {
     width: 100%;
 }
 
-p, h3 {
+p,
+h3 {
     margin: 0;
 }
 
@@ -44,9 +45,15 @@ p, h3 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    margin-block-end: 32px;
     width: 100%;
     box-sizing: border-box;
+}
+
+.main-content {
+    padding: 20px;
+    min-height: 100vh;
+    width: 100%;
 }
 
 .filters {
@@ -60,25 +67,38 @@ p, h3 {
     box-sizing: border-box;
 }
 
+.filters>button {
+    font-size: 16px;
+    padding: 8px 16px;
+}
+
 .components {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
-    padding: 20px;
+    margin-block-end: 24px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.components > .search-wrapper {
+@media (min-width: 768px) {
+    .components {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.components>.search-wrapper {
     flex: 1;
 }
 
-.components > .search-wrapper #search-input {
+.components>.search-wrapper #search-input {
     width: 100%;
     box-sizing: border-box;
 }
 
-.right > button {
+.right>button {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -96,13 +116,14 @@ p, h3 {
 #cards,
 .cards {
     display: grid;
-    grid-template-columns: repeat(1, minmax(0, 1fr)); 
-    gap: 16px; 
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 16px;
     width: 100%;
     grid-column: 1 / -1;
 }
 
 @media (min-width: 768px) {
+
     #cards,
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -110,14 +131,18 @@ p, h3 {
 }
 
 .card {
-    background-color: #1d293d;
+    background-color: #1e293b;
     border-radius: 12px;
-    border: 1px solid #2c3d58;
-    padding: 18px;
+    border: 1px solid #334155;
+    padding: 20px;
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.card:hover {
+    border-color: #475569;
 }
 
 .top-part,
@@ -126,15 +151,16 @@ p, h3 {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    gap: 12px;
+    margin-bottom: 16px;
 }
 
 .top-left-part {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    flex: 1;
     min-width: 0;
 }
+
 .description,
 .mail-and-link {
     display: flex;
@@ -142,39 +168,44 @@ p, h3 {
     gap: 6px;
 }
 
-.description > h3,
+.description>h3,
 .top-card h3 {
-    font-size: 2rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+    line-height: 1.3;
     color: #f1f5f9;
 }
 
-.top-left-part > p {
+.top-left-part>p {
     color: #8da2c0;
-    font-size: 1.35rem;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    margin-bottom: 8px;
 }
 
-.top-left-part > span {
+.top-left-part>span {
     display: inline-flex;
     align-items: center;
     background-color: #3a4e6f;
     color: #d6deea;
-    border-radius: 6px;
+    border-radius: 5px;
     padding: 2px 10px;
     width: fit-content;
-    font-size: 1rem;
+    font-size: 0.9rem;
 }
 
 .rhs-btn,
 .icons {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 4px;
+    flex-shrink: 0;
 }
 
 .center-part {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
 .top-center-part,
@@ -190,7 +221,7 @@ p, h3 {
 .bottom-center-part label {
     grid-column: 1 / -1;
     color: #8da2c0;
-    font-size: 1.15rem;
+    font-size: 0.9375rem;
 }
 
 .top-center-part .blackbox-sm {
@@ -203,20 +234,31 @@ p, h3 {
 
 .top-part .icon,
 .center-part .icon {
-    width: 20px;
-    height: 20px;
-    color: #8ea0b9;
+    width: 18px;
+    height: 18px;
+    color: #64748b;
 }
 
 .top-part button,
 .center-part button {
-    padding: 0;
+    padding: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.card > p:last-child {
-    margin-top: 2px;
+.top-part button:hover,
+.center-part button:hover {
+    color: #94a3b8;
+}
+
+.card>p:last-child {
     color: #7d91ad;
-    font-size: 1.1rem;
+    font-size: 0.8125rem;
 }
 
 .email-block {
@@ -244,12 +286,23 @@ p, h3 {
 }
 
 #search-input {
-    background-color: #1d293d;
-    border: 1px solid #717e8f;
-    padding: 8px 14px 8px 40px;
-    border-radius: 5px;
+    width: 100%;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    padding: 12px 16px 12px 40px;
+    border-radius: 8px;
     color: white;
     font-size: 16px;
+}
+
+#search-input:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
+
+.search-buttons {
+    display: flex;
+    gap: 10px;
 }
 
 .pass {
@@ -261,15 +314,15 @@ p, h3 {
     width: 100%;
 }
 
-.pass > .blackbox {
+.pass>.blackbox {
     flex: 1;
 }
 
-.password-block > div + p {
+.password-block>div+p {
     margin-top: 20px;
 }
 
-.password-block > p + div {
+.password-block>p+div {
     margin-top: 10px;
 }
 
@@ -278,27 +331,30 @@ p, h3 {
 }
 
 /* Bugged a bit */
-#generate-password-modal:not([open]), #add-password-modal:not([open]) {
+#generate-password-modal:not([open]),
+#add-password-modal:not([open]) {
     display: none;
 }
 
-#generate-password-modal, #add-password-modal {
+#generate-password-modal,
+#add-password-modal {
     background: linear-gradient(to right, #192438, #1b263a);
     border: none;
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: white;
-    width: calc(100% - 2rem); 
+    width: calc(100% - 2rem);
     max-width: 448px;
     padding: 24px;
-    box-sizing: border-box;   
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: stretch;   
+    align-items: stretch;
     gap: 16px;
 }
 
-#generate-password-modal::backdrop, #add-password-modal::backdrop {
+#generate-password-modal::backdrop,
+#add-password-modal::backdrop {
     background: rgba(0, 0, 0, 0.6);
 }
 
@@ -342,7 +398,7 @@ p, h3 {
 }
 
 /* This needs to bedone to a blackbox class since we have a bunch of these make it modular later!!! */
-#generated-password:focus{
+#generated-password:focus {
     outline: none;
 }
 
@@ -366,7 +422,7 @@ p, h3 {
     width: 100%;
 }
 
-.modal-slider > p {
+.modal-slider>p {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -417,13 +473,13 @@ p, h3 {
     width: 100%;
 }
 
-.content{
+.content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
 }
 
-dialog{
+dialog {
     background-color: white;
     border: none;
     border-radius: 8px;
@@ -432,12 +488,12 @@ dialog{
 }
 
 dialog::backdrop {
-    background-color: rgba (0 , 0 , 0 , 0.7) ; 
-    backdrop-filter: blur (3 px ) ; 
+    background-color: rgba (0, 0, 0, 0.7);
+    backdrop-filter: blur (3 px);
 }
 
 
-.form-control{
+.form-control {
     font-family: inherit;
     font-size: 1rem;
     line-height: 1.1;
@@ -446,27 +502,27 @@ dialog::backdrop {
     gap: 1em;
 }
 
-input[type="range"]{
+input[type="range"] {
     accent-color: #2563eb;
 }
 
-#strength{
+#strength {
     font-size: 12px;
     padding: 4px 8px;
     border-radius: 4px;
 }
 
-.text-slate{
+.text-slate {
     color: #CBD5E1;
 }
 
-.modal-slider p{
+.modal-slider p {
     margin-inline: 10px;
     color: #62748e;
     font-size: 12px;
 }
 
-#copy-msg{
+#copy-msg {
     display: none;
     background-color: rgba(255, 255, 255, 0.9);
     font-size: 12px;
@@ -489,32 +545,34 @@ input[type="range"]{
     margin-bottom: 8px;
 }
 
-#add-password-form input, #add-password-form select {
+#add-password-form input,
+#add-password-form select {
     width: 100%;
     background-color: #0f172a;
     color: #ffffff;
     border-radius: 8px;
-    padding: 12px 16px; 
+    padding: 12px 16px;
     border: 1px solid #334155;
     box-sizing: border-box;
     font-size: 16px;
     line-height: 24px;
 }
 
-#add-password-form input:focus, #add-password-form select:focus {
+#add-password-form input:focus,
+#add-password-form select:focus {
     outline: none;
     border-color: #3b82f6;
 }
 
-#add-password-form > div:not(:last-child) {
+#add-password-form>div:not(:last-child) {
     margin-bottom: 16px;
 }
 
-.add-pass{
+.add-pass {
     margin-bottom: 24px;
 }
 
-.bottom-buttons{
+.bottom-buttons {
     display: flex;
     flex-direction: row;
     gap: 12px;
@@ -526,20 +584,20 @@ input[type="range"]{
     top: 24px;
     right: 24px;
     z-index: 10000;
-    display: none; 
+    display: none;
     align-items: center;
     gap: 12px;
-    background-color: #1e293b;   
-    border: 1px solid #334155;   
-    border-radius: 8px;          
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
     padding: 16px 20px 12px 0;
-    color: white;                
-    font-size: 13px;             
+    color: white;
+    font-size: 13px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     inline-size: 25%;
 }
 
-.contents{
+.contents {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -548,5 +606,10 @@ input[type="range"]{
     gap: 10px;
 }
 
+#logout-btn {
+    padding: 8px 16px;
+}
 
-
+#last-modified {
+    padding-block-start: 16px;
+}

@@ -1,8 +1,8 @@
-html{
+html {
     padding: 48px 16px;
 }
 
-.navigation{
+.navigation {
     display: flex;
     justify-content: space-between;
     max-height: 40px;
@@ -10,37 +10,185 @@ html{
     font-size: 20px;
 }
 
-.seperate{
+.seperate {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 12px;
 }
 
-#login, #signup{
+#login,
+#signup {
     max-height: 40px;
+    width: 107.61px;
 }
 
-#login{
+#login {
     border: none;
 }
 
-.center-main{
+.center-main {
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
-    font-size: 48px;
+    margin-bottom: 80px;
 }
 
-.big-logo{
+.center-text {
+    margin-top: 0px;
+    margin-bottom: 24px;
+    font-size: 60px;
+}
+
+.second-center-text {
+    margin-top: 0px;
+    margin-bottom: 32px;
+    font-size: 20px;
+    color: oklch(0.704 0.04 256.788);
+}
+
+.big-logo {
     background: #2563eb;
-    border-radius: 15px;
+    border-radius: 25px;
     width: 80px;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 32px;
 }
 
+.center-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+}
+
+.center-btn-size {
+    height: 60px;
+    font-size: 18px;
+    padding: 16px 32px;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 0px;
+    margin-bottom: 80px;
+    gap: 25px;
+}
+
+
+.card {
+    padding: 32px;
+    min-height: 294px;
+    max-height: 350px;
+    background: oklch(27.9% 0.041 260.031);
+    border: solid 1px;
+    border-color: oklch(40.79% 0.031 263.099);
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .card-grid {
+        grid-template-columns: auto;
+    }
+
+    .card {
+        min-height: 218px;
+    }
+}
+
+
+.icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin-bottom: 16px;
+    margin-top: 0px;
+}
+
+.card p {
+    margin: 0;
+    color: oklch(70.4% 0.04 256.788);
+}
+
+.icon1 {
+    color: rgb(62, 81, 255);
+    background-color: #55c1ff1a;
+}
+
+.icon2 {
+    color: rgb(32, 255, 3);
+    background-color: rgba(51, 255, 0, 0.072);
+}
+
+.icon3 {
+    color: rgb(138, 90, 170);
+    background-color: rgba(187, 0, 255, 0.072);
+}
+
+.icon4 {
+    color: rgb(249, 154, 2);
+    background-color: rgba(255, 132, 0, 0.072);
+}
+
+.icon5 {
+    color: cyan;
+    background-color: rgba(0, 255, 217, 0.072);
+}
+
+.icon6 {
+    color: rgb(255, 106, 131);
+    background-color: rgba(241, 61, 91, 0.12);
+}
+
+.ready-card {
+    display: grid;
+    text-align: center;
+    border-radius: 1.5rem;
+    padding: 48px;
+    background: linear-gradient(to right,
+            oklch(54.6% 0.245 262.881),
+            oklch(55.8% 0.288 302.321));
+}
+
+.ready-card button {
+    background: white;
+    border-style: none;
+    padding: 16px 32px;
+    color: oklch(54.6% 0.245 262.881);
+    font-size: 18px;
+}
+
+.ready-card h2 {
+    font-size: 32px;
+    margin-top: 0px;
+    margin-bottom: 16px;
+}
+
+.ready-card p {
+    color: oklch(93.2% 0.032 255.585);
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 32px;
+}
+
+footer {
+    margin-top: 80px;
+    padding-top: 32px;
+    color:oklch(55.4% 0.046 257.417);
+    text-align: center;
+}
+
+hr{
+    border:0;
+    border-top: 1px solid oklch(55.417% 0.04605 257.553 / 0.229);
+}

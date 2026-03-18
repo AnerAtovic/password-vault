@@ -1,15 +1,26 @@
 import PasswordService from '../services/password.service.js';
+import { urlValidatior, emailValidator } from '../utils/validator.js';
+import { generateCards } from '../pages/dashboard.js';
+import { showNotification } from '../utils/dom.js';
 const addPasswordModal = document.getElementById('add-password-modal');
 const addPasswordBtn = document.getElementById('add-password-btn');
 const cancelAddPasswordBtn = document.getElementById('cancel-add-password-btn');
 const closeAddModalBtn = document.getElementById('close-add-modal');
 const savePasswordBtn = document.getElementById('submit-password');
 const addPasswordForm = document.getElementById('add-password-form');
-import passwordSerivce from '../services/password.service.js';
-import { generateCards } from '../pages/dashboard.js';
+
 addPasswordBtn.addEventListener('click', () => {
     addPasswordModal.showModal();
 });
+
+function resetPasswordForm() {
+    addPasswordForm.reset();
+    const eyeIcon = addPasswordForm.querySelector('.show-password .eye');
+    eyeIcon.classList.add('active');
+    addPasswordForm.querySelector('#password').type = 'password';
+}
+
+addPasswordModal.addEventListener('close', resetPasswordForm);
 
 cancelAddPasswordBtn.addEventListener('click', () => {
     addPasswordModal.close();
@@ -17,6 +28,16 @@ cancelAddPasswordBtn.addEventListener('click', () => {
 
 closeAddModalBtn.addEventListener('click', () => {
     addPasswordModal.close();
+});
+
+// Handle show/hide password toggle
+const showPasswordBtn = document.getElementById('add-password-modal').querySelector('.show-password');
+const passwordInput = document.getElementById('password');
+const eyeIcon = showPasswordBtn.querySelector('.eye');
+
+showPasswordBtn.addEventListener('click', () => {
+    passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+    eyeIcon.classList.toggle('active', passwordInput.type === 'password');
 });
 
 function parseFromData(formData) {
@@ -30,21 +51,31 @@ function parseFromData(formData) {
 savePasswordBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
+    if(!addPasswordForm.reportValidity()) {
+        // this is cool because it usses the custom already designed error notifications
+        // and also scrolls to the first invalid input
+        return;
+    }
+    
     // Parse Data From Form Delegate To Service To Save Data 
-    // And Then Refresh The Page To Show The Added Card
-
+    
     const formData = new FormData(addPasswordForm);
     const passwordData = parseFromData(formData);
+    
+    if(passwordData.url.trim() !== '' && !urlValidatior(passwordData.url)) {
+        alert('Please Enter A Valid URL');
+        return;
+    }
+    
+    if(passwordData['username-email'].trim().includes('@') && !emailValidator(passwordData['username-email'])) {
+        alert('Please Enter A Valid Email');
+        return;
+    }
+    
     PasswordService.savePassword(passwordData);
-    // Refresh Website With NewCard
     generateCards(passwordData.title, passwordData['username-email'], passwordData.password, passwordData.url, passwordData.category);
 
     addPasswordModal.close();
-    addPasswordForm.reset();
-
-    document.querySelector('.password-added-successfully').style.display = 'flex';
-    setTimeout(() => {
-        document.querySelector('.password-added-successfully').style.display = 'none';
-    }, 3000);
+    showNotification('Password added successfully!');
 });
 

@@ -1,23 +1,38 @@
 const passwords = [];
+const logoutBtn = document.getElementById('logout-btn');
+import { copyContentToClipboard, showNotification} from '../utils/dom.js';
+import PasswordService from '../services/password.service.js';
 
 
-// document.querySelectorAll('.star').forEach(star => {
-//     star.addEventListener('click', () => {
-//         star.classList.toggle('active');
-//     });
-// });
+// Load all cards on page load
+window.addEventListener('DOMContentLoaded', () => {
+    loadCardsFromStorage();
+});
 
-// const eye = document.querySelector('.eye');
-// const passwordInput = document.querySelector('.blackbox p');
-
-// eye.addEventListener('click', () => {
-//     eye.classList.toggle('active');
-// });
+logoutBtn.addEventListener('click', () => {
+    // Currently only redirects for mvp later when express is written implement the body and logic
+    window.location.href = '../index.html';
+});
 
 // Generate Cards From Passwords And Other Data
 function generateCards(title, user, password, url, category) {
     const cardContainer = document.getElementById('cards');
     const card = document.createElement('div');
+    // time of creation of the card or modification is when the card itself is created or modified and not when the password is created or modified because the password can be created a long time ago but the card is created now when the user adds it to the vault
+    const time = new Date().toLocaleDateString().split(",")[0]; 
+    if(url.trim() !== ''){
+    url =  `
+        <a href="${url}" target="_blank" class="open-link">
+            <button class="open-link">
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M14 3h7v7m0-7L10 14"/>
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    d="M5 10v11h11"/>
+                </svg>
+            </button>
+        </a>`;
+    }
 
     card.innerHTML = `
     <div class="card">
@@ -25,14 +40,7 @@ function generateCards(title, user, password, url, category) {
                     <div class="top-left-part">
                         <div class="description">
                             <h3>${title}</h3>
-                            <button class="open-link">
-                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    d="M14 3h7v7m0-7L10 14"/>
-                                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    d="M5 10v11h11"/>
-                                </svg>
-                            </button>
+                            ${url}
                         </div>
                         <p>${user}</p>
                         <span>${category}</span>
@@ -59,7 +67,7 @@ function generateCards(title, user, password, url, category) {
                     <div class="top-center-part">
                         <label for="Username">Username</label>
                         <input type="text" id="Username" class="blackbox-sm" value="${user}" readonly>
-                        <button class="btn-copy-username">
+                        <button class="btn-copy">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
                                 <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
@@ -72,7 +80,7 @@ function generateCards(title, user, password, url, category) {
 
                         <!-- Eye Icon To Show -->
                         <button class="icon-btn">
-                            <svg class="icon eye" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="icon eye active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 
                                 <!-- Normal Eye -->
                                 <path class="eye-open"
@@ -90,7 +98,7 @@ function generateCards(title, user, password, url, category) {
                         </button> 
 
                         
-                        <button class="btn-copy-username">
+                        <button class="btn-copy">
                             <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
                                 <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
@@ -98,11 +106,78 @@ function generateCards(title, user, password, url, category) {
                         </button>
                     </div>
                 </div>
-                <p id="last-modified">Last modified: 3/14/2026</p>
+                <p id="last-modified">Last modified: ${time}</p>
              </div>
     `;
-
-    cardContainer.appendChild(card);
+    
+    addEventListenersToCard(card); // each card will get its own event listener because it binds to this instance (each thing in js is a reference)
+    cardContainer.prepend(card); // this adds the card to the beggining not the end
 }
+
+function addEventListenersToCard(cardElement) {
+    // each card element will bea loaded as a json object from storage and then event listeners will be added to it like the show password and copy buttons and the delete button
+    const starToggle  = cardElement.querySelector("svg.icon.star");
+    const trashBtn = cardElement.querySelector(".btn-delete");
+    const copyBtns = cardElement.querySelectorAll(".btn-copy");
+    const eyeBtn = cardElement.querySelector(".icon-btn");
+    const passwordInput = cardElement.querySelector('#Password');
+
+    // mora na citav button ne na sam svg
+    starToggle.addEventListener('click', () => {
+        const starIcon = cardElement.querySelector('.star');
+        starIcon.classList.toggle('active');
+    });
+
+    trashBtn.addEventListener('click', () => {
+        if(confirm("are yo sure you want to remove this password? This action cannot be undone.")) {
+            cardElement.remove();
+            // remove from storage
+            showNotification('Password deleted');
+        }
+    });
+
+    copyBtns[0].addEventListener('click', () => {
+        const username = cardElement.querySelector('#Username').value;
+        copyContentToClipboard(username);
+        showNotification('Username copied to clipboard!');
+    });
+
+    copyBtns[1].addEventListener('click', () => {
+        const password = cardElement.querySelector('#Password').value;
+        copyContentToClipboard(password);
+        showNotification('Password copied to clipboard!');
+    });
+
+    eyeBtn.addEventListener('click', () => {
+        const eyeIcon = eyeBtn.querySelector('.eye');
+        passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+        eyeIcon.classList.toggle('active', passwordInput.type === 'password');
+    });
+
+}
+
+function loadCardsFromStorage() {
+    // Get Cards Data From Storage And Loop Over It To Generate Cards
+    const storedCards = PasswordService.getAllPasswords();
+    storedCards.forEach(cardData => {
+        generateCards(cardData.title, cardData['username-email'], cardData.password, cardData.url, cardData.category);
+    });
+}
+
+
+// Filtering Logic
+const filterBtns = document.querySelector(".filter-btns").children;
+
+for(const btn of filterBtns) {
+    btn.addEventListener('click', () => {
+        // toggle active class
+        for(const button of filterBtns) {
+            button.classList.remove('btn-active');
+        }
+        btn.classList.add('btn-active');
+    });
+}
+
+
 
 export { generateCards };

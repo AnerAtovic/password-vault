@@ -14,6 +14,11 @@ h3 {
     transition: 0.2s ease;
 }
 
+dialog#generate-password-modal svg.icon{
+    width: 20px;
+    height: 20px;
+}
+
 .star-path {
     fill: none;
     stroke: #9aa4b2;
@@ -61,15 +66,29 @@ h3 {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    padding: 20px;
+    margin-block-end: 24px;
+    padding-block-end: 8px;
     gap: 10px;
     width: 100%;
     box-sizing: border-box;
 }
 
-.filters>button {
+.filter-btns {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 2px;
+}
+
+.filter-btns .btn {
+    flex: 0 0 auto;
     font-size: 16px;
+    line-height: 1.25;
     padding: 8px 16px;
+    min-height: 40px;
 }
 
 .components {
@@ -234,14 +253,14 @@ h3 {
 
 .top-part .icon,
 .center-part .icon {
-    width: 18px;
-    height: 18px;
-    color: #64748b;
+    width: 16px;
+    height: 16px;
+    color: inherit;
 }
 
 .top-part button,
 .center-part button {
-    padding: 4px;
+    padding: 8px;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -249,10 +268,13 @@ h3 {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    border-radius: 6px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .top-part button:hover,
 .center-part button:hover {
+    background-color: #314158;
     color: #94a3b8;
 }
 
@@ -579,7 +601,7 @@ input[type="range"] {
     padding-top: 16px;
 }
 
-.password-added-successfully {
+#notification {
     position: fixed;
     top: 24px;
     right: 24px;
@@ -612,4 +634,57 @@ input[type="range"] {
 
 #last-modified {
     padding-block-start: 16px;
+}
+
+.btn-copy:hover .icon,
+.icon-btn:hover .icon {
+    color: #51a2ff;
+}
+
+.btn-favourite:hover .star-path {
+    stroke: #fdc700;
+}
+
+.btn-delete:hover .icon {
+    color: #ff6467;
+}
+
+.pass-show {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.pass-show input[type="password"] {
+    width: 100%;
+    padding-right: 44px;
+}
+
+.show-password {
+    background-color: transparent;
+    border: none;
+    color: #64748b;
+    cursor: pointer;
+    padding: 4px 8px;
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.show-password:hover {
+    color: #94a3b8;
+}
+
+.show-password .icon {
+    width: 20px;
+    height: 20px;
 }

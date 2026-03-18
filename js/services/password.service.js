@@ -4,9 +4,11 @@ const passwordSerivce = {
     savePassword: (passwordData) => {
         console.log("savePasswordCalled");
         storageService.saveToStorage(passwordData);
+    },
+
+    getAllPasswords: () => {
+        return storageService.getFromStorage();
     }
-
-
 }
 
 export default passwordSerivce;

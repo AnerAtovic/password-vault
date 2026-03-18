@@ -57,13 +57,16 @@
                 <path d="M4 6h16l-6.5 7.5V19l-3 1.5v-7L4 6z"/>
             </svg>
 
+            <div class="filter-btns">
+                <button id="all" class="btn btn-active" value="all">All</button>
+                <button id="email" class="btn" value="Email">Email</button>
+                <button id="Development" class="btn" value="Development">Development</button>
+                <button id="Entertainment" class="btn" value="Entertainment">Entertainment</button>
+                <button id="Shopping" class="btn" value="Shopping">Shopping</button>
+                <button id="Work" class="btn" value="Work">Work</button>
+            </div>
 
-            <button id="all" class="btn btn-active">All</button>
-            <button id="email" class="btn">Email</button>
-            <button id="Development" class="btn">Development</button>
-            <button id="Entertainment" class="btn">Entertainment</button>
-            <button id="Shopping" class="btn">Shopping</button>
-            <button id="Work" class="btn">Work</button>
+
         </div>
         <div class="content">
             <div id="cards">
@@ -89,17 +92,35 @@
                 <form action="" id="add-password-form">
                     <div>
                         <label for="title">Title *</label>
-                        <input type="text" id="title" name="title" placeholder="eg., Gmail, GitHub" required>
+                        <input type="text" id="title" name="title" placeholder="eg., Gmail, GitHub" autocomplete="username" required>
                     </div>
 
                     <div>
                         <label for="username-email">Username / Email *</label>
-                        <input type="string" id="username-email" name="username-email" placeholder="Username / Email" required>
+                        <input type="string" id="username-email" name="username-email" placeholder="Username / Email"  required>
                     </div>
                     
-                    <div>
+                    <div class="pass-show">
                         <label for="password">Password *</label>
-                        <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="password" name="password" placeholder="Enter Password" autocomplete="new-password" required>
+                            <button type="button" class="icon-btn show-password">
+                                <svg class="icon eye active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Cross Line (visible when password hidden) -->
+                                    <line class="eye-closed"
+                                    x1="3" y1="3" x2="21" y2="21"
+                                    stroke="currentColor" stroke-width="2"/>
+
+                                    <!-- Normal Eye (hidden when password hidden) -->
+                                    <path class="eye-open"
+                                    d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                                    stroke="currentColor" stroke-width="2" fill="none"/>
+                                    <circle class="eye-open"
+                                    cx="12" cy="12" r="3"
+                                    stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
 
                     <div>
@@ -160,7 +181,7 @@
                             <polyline points="18 21 18 15 12 15"/>
                         </svg>
                     </button>
-                    <button id="copy-generated" class="btn-clear">
+                    <button id="copy-generated" class="btn-clear btn-copy">
                         <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <rect x="9" y="9" width="13" height="13" rx="2" ry="2" stroke-width="2"/>
                             <path stroke-width="2" d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
@@ -191,7 +212,7 @@
 
             <p id="copy-msg">Copied to clipboard!</p>
 
-            <div class="password-added-successfully">
+            <div id="notification">
                 <div class="contents">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none" class="icon">
                         <circle cx="10" cy="10" r="9" fill="white"/>
@@ -203,9 +224,10 @@
                             stroke-linejoin="round"
                             />
                         </svg>
-                    <p>Password added successfully!</p>
+                        <p></p>
                 </div>
             </div>
+
             
 
             

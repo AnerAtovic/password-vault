@@ -49,17 +49,6 @@ html {
     color: oklch(0.704 0.04 256.788);
 }
 
-.big-logo {
-    background: #2563eb;
-    border-radius: 25px;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 32px;
-}
-
 .center-buttons {
     display: flex;
     align-items: center;

@@ -1,4 +1,5 @@
 import { generatePassword, getPasswordStrength } from '../utils/generator.js';
+import { copyContentToClipboard, showNotification } from '../utils/dom.js';
 
 const modal = document.getElementById('generate-password-modal');
 const generateBtn = document.getElementById('generate-password-btn');
@@ -11,29 +12,27 @@ const newPassword = document.getElementById('regenerate');
 let passwordLength = parseInt(passwordLengthInput.value);
 let password = "";
 
-let includeUppercase = document.getElementById('uppercase').checked;
-let includeLowercase = document.getElementById('lowercase').checked;
-let includeNumbers = document.getElementById('numbers').checked;
-let includeSymbols = document.getElementById('symbols').checked;
+// easier to get an array of checkboxes this way instead of getting each one by id
+const characterTypeCheckboxes = document.querySelectorAll('.check-boxes input[type="checkbox"]');
 
-document.getElementById('uppercase').addEventListener('change', (e) => {
-    includeUppercase = e.target.checked;
-    regenerate();
-});
+function getCharacterTypeState() {
+    return {
+        includeUppercase: document.getElementById('uppercase').checked,
+        includeLowercase: document.getElementById('lowercase').checked,
+        includeNumbers: document.getElementById('numbers').checked,
+        includeSymbols: document.getElementById('symbols').checked,
+    };
+}
 
-document.getElementById('lowercase').addEventListener('change', (e) => {
-    includeLowercase = e.target.checked;
-    regenerate();
-});
+characterTypeCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener('change', () => {
+        if (!checkAtLeastOneChecked()) {
+            showNotification('Please select one character type');
+            return;
+        }
 
-document.getElementById('numbers').addEventListener('change', (e) => {
-    includeNumbers = e.target.checked;
-    regenerate();
-});
-
-document.getElementById('symbols').addEventListener('change', (e) => {
-    includeSymbols = e.target.checked;
-    regenerate();
+        regenerate();
+    });
 });
 
 generateBtn.addEventListener('click', () => {
@@ -56,6 +55,11 @@ passwordLengthInput.oninput = (e) => {
 };
 
 function regenerate() {
+    if (!checkAtLeastOneChecked()) {
+        return;
+    }
+
+    const { includeUppercase, includeLowercase, includeNumbers, includeSymbols } = getCharacterTypeState();
     generatedPasswordDisplay.value = generatePassword(passwordLength, includeUppercase, includeLowercase, includeNumbers, includeSymbols);
     password = generatedPasswordDisplay.value;
     passwordStrength();
@@ -66,18 +70,19 @@ newPassword.addEventListener('click', () => {
 });
 
 document.getElementById('copy-generated').addEventListener('click', () => {
-    navigator.clipboard.writeText(generatedPasswordDisplay.value);
-    document.getElementById('copy-msg').style.display = 'block';
-    setTimeout(() => {
-        document.getElementById('copy-msg').style.display = 'none';
-    }, 2000);
+    copyContentToClipboard(generatedPasswordDisplay.value);
+    showNotification('Password copied to clipboard!');
 });
 
 
 function passwordStrength(){
     const displayStrength = document.getElementById('strength');
+    const { includeUppercase, includeLowercase, includeNumbers, includeSymbols } = getCharacterTypeState();
     const strength = getPasswordStrength(password, includeUppercase, includeLowercase, includeNumbers, includeSymbols);
     displayStrength.textContent = strength.strength;
     displayStrength.style.backgroundColor = strength.score === 1 ? '#ff4d4d' : strength.score === 2 ? '#ffcc00' : '#4CAF50';
 }
 
+function checkAtLeastOneChecked() {
+    return Array.from(characterTypeCheckboxes).some((checkbox) => checkbox.checked);
+}

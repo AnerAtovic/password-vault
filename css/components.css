@@ -108,9 +108,7 @@
 	outline: none;
 }
 
-.logo{
-	inline-size: 40px;
-	block-size: 40px;
+.shield-sm, .shield-bg{
 	box-sizing: border-box;
 	background: #2563eb;
 	border-radius: 12px;
@@ -119,5 +117,80 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
 
+.shield-sm{
+	inline-size: 40px;
+	block-size: 40px;
+}
+
+.shield-bg{
+	inline-size: 48px;
+	block-size: 48px;
+}
+
+.big-logo {
+    background: #2563eb;
+    border-radius: 25px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 32px;
+}
+
+
+#notification {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+	z-index: 2147483647;
+    display: none;
+    align-items: center;
+	justify-content: flex-start;
+	background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+	border: 1px solid #334155;
+	border-radius: 10px;
+    padding: 14px 16px;
+	color: #e2e8f0;
+	font-size: 13px;
+	line-height: 1.35;
+	box-shadow: 0 12px 32px rgba(2, 6, 23, 0.55);
+	inline-size: min(356px, calc(100vw - 32px));
+	min-height: 53px;
+	box-sizing: border-box;
+	pointer-events: none;
+	opacity: 0;
+	transform: translateY(-8px);
+	transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+#notification.is-visible {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+#notification .notification-content {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+}
+
+#notification .icon {
+	width: 20px;
+	height: 20px;
+	flex-shrink: 0;
+}
+
+#notification p {
+	margin: 0;
+	color: #e2e8f0;
+	font-size: 13px;
+	font-weight: 600;
+	width: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }

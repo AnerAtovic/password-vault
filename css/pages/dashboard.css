@@ -601,24 +601,6 @@ input[type="range"] {
     padding-top: 16px;
 }
 
-#notification {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 10000;
-    display: none;
-    align-items: center;
-    gap: 12px;
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 16px 20px 12px 0;
-    color: white;
-    font-size: 13px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    inline-size: 25%;
-}
-
 .contents {
     display: flex;
     flex-direction: row;
@@ -687,4 +669,24 @@ input[type="range"] {
 .show-password .icon {
     width: 20px;
     height: 20px;
+}
+
+
+.left{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+h1{
+    line-height: calc(2/1.5);
+    font-weight: inherit;
+    margin:0;
+}
+
+#user-email{
+    color: #90a1b9;
+    font-size: 0.875rem;
+    line-height: calc(1.25/.875);
 }

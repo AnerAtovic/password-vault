@@ -1,12 +1,56 @@
-const passwords = [];
-const logoutBtn = document.getElementById('logout-btn');
 import { copyContentToClipboard, showNotification} from '../utils/dom.js';
 import PasswordService from '../services/password.service.js';
+const passwords = [];
+const logoutBtn = document.getElementById('logout-btn');
+const searchInput = document.getElementById('search-input');
+
+
+// cool little thing
+searchInput.addEventListener('input', (e) => {
+    searchFilter(e.target.value);
+});
+
+
+function loadCards(){
+    // test function for loading a default set of cards without storage
+    const arr = [
+        {
+            title: 'Gmail',
+            username: 'random1',
+            password: "rng",
+            url: '',
+            category: 'Email'
+        },
+        {
+            title: 'GitHub',
+            username: 'random2',
+            password: "rng",
+            url: 'https://github.com',
+            category: 'Development'
+        },
+        {
+            title: 'Facebook',
+            username: 'random3',
+            password: "rng",
+            url: 'https://facebook.com',
+            category: 'Entertainment'
+        },
+        {
+            title: 'Twitter',
+            username: 'random4',
+            password: "rng",
+            url: 'https://twitter.com',
+            category: 'Entertainment'
+        }
+    ];
+    arr.forEach(item => generateCards(item.title, item.username, item.password, item.url, item.category));
+}
 
 
 // Load all cards on page load
 window.addEventListener('DOMContentLoaded', () => {
     loadCardsFromStorage();
+    loadCards();
 });
 
 logoutBtn.addEventListener('click', () => {
@@ -14,10 +58,13 @@ logoutBtn.addEventListener('click', () => {
     window.location.href = '../index.html';
 });
 
+
+
 // Generate Cards From Passwords And Other Data
 function generateCards(title, user, password, url, category) {
     const cardContainer = document.getElementById('cards');
     const card = document.createElement('div');
+    card.classList.add('card');
     // time of creation of the card or modification is when the card itself is created or modified and not when the password is created or modified because the password can be created a long time ago but the card is created now when the user adds it to the vault
     const time = new Date().toLocaleDateString().split(",")[0]; 
     if(url.trim() !== ''){
@@ -35,7 +82,6 @@ function generateCards(title, user, password, url, category) {
     }
 
     card.innerHTML = `
-    <div class="card">
                 <div class="top-part">
                     <div class="top-left-part">
                         <div class="description">
@@ -43,7 +89,7 @@ function generateCards(title, user, password, url, category) {
                             ${url}
                         </div>
                         <p>${user}</p>
-                        <span>${category}</span>
+                        <span id="categoryId">${category}</span>
                     </div>
                     <div class="rhs-btn">
                          <!-- Star Icon -->
@@ -107,7 +153,6 @@ function generateCards(title, user, password, url, category) {
                     </div>
                 </div>
                 <p id="last-modified">Last modified: ${time}</p>
-             </div>
     `;
     
     addEventListenersToCard(card); // each card will get its own event listener because it binds to this instance (each thing in js is a reference)
@@ -116,7 +161,7 @@ function generateCards(title, user, password, url, category) {
 
 function addEventListenersToCard(cardElement) {
     // each card element will bea loaded as a json object from storage and then event listeners will be added to it like the show password and copy buttons and the delete button
-    const starToggle  = cardElement.querySelector("svg.icon.star");
+    const starToggle  = cardElement.querySelector(".btn-favourite");
     const trashBtn = cardElement.querySelector(".btn-delete");
     const copyBtns = cardElement.querySelectorAll(".btn-copy");
     const eyeBtn = cardElement.querySelector(".icon-btn");
@@ -153,7 +198,6 @@ function addEventListenersToCard(cardElement) {
         passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
         eyeIcon.classList.toggle('active', passwordInput.type === 'password');
     });
-
 }
 
 function loadCardsFromStorage() {
@@ -175,8 +219,43 @@ for(const btn of filterBtns) {
             button.classList.remove('btn-active');
         }
         btn.classList.add('btn-active');
+        showCards(btn.value);
     });
 }
+
+function showCards(category) {
+    const allCards = document.querySelectorAll('.card');
+
+    if(category === 'All') {
+        allCards.forEach(card => card.style.display = 'block');
+        return;
+    }
+
+    allCards.forEach(card => {
+        const cardCategory = card.querySelector('#categoryId').textContent;
+        if(cardCategory === category){
+            card.style.display = 'inline-block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+function searchFilter(serachText){
+    const allCards = document.querySelectorAll('.card');
+
+    allCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        if(title.includes(serachText.toLowerCase())){
+            card.style.display = 'block';
+        } else{ 
+            card.style.display = 'none';
+        }
+    });
+}
+
+
+
 
 
 

@@ -3,12 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0; url=./pages/signup.html" />
+    <!-- <meta http-equiv="refresh" content="0; url=./pages/signup.html" /> -->
     <title>Document</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/components.css">
+    <link rel="stylesheet" href="./css/pages/landing.css">
 </head>
-<body>
-    <p>Preusmjeravanje na signup</p>
-    <!-- Fun Fact Mozes Preusmjeriti Prilikom Loada Odmah Na Ovaj Page -->
-    <!-- <a href="pages/signup.html"><button>Sign Up</button></a> -->
+<style>
+    #login{
+        background: transparent;
+    }
+</style>
+<body class="dark">
+    <div class="navigation">
+        <div class="seperate">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <p>SecureVault</p>
+        </div>
+        <div class="seperate">
+            <a href="pages/signin.html"><button id="login" onclick="" class="btn">Log In</button></a>
+            <a href="pages/signup.html"><button id="signup" class="btn btn-active">Sign Up</button></a>
+        </div>
+    </div>
+
+    <div class="center-main">
+        <div class="big-logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-icon lucide-shield"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+        </div>
+        <p class="center-text">Your passwords, safe and secure</p>
+        <p class="second-center-text">Store, manage, and access all your passwords from one secure vault.<br>Never forget a password again.</p>
+    
+        <div class="center-buttons">
+            <a href="pages/signup.html"><button class="btn btn-active center-btn-size">Get Started For Free</button></a>
+            <a href="pages/signin.html"><button class="btn center-btn-size">Log In</button></a>
+        </div>
+    </div>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="icon icon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lock-icon lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>Military-Grade Encryption</h3>
+            <p>Your passwords are encrypted with AES-256 encryption, the same standard used by banks and governments.</p>
+        </div>
+        <div class="card">
+            <div class="icon icon2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-key-icon lucide-key"><path d="m15.5 7.5 2.3 2.3a1 1 0 0 0 1.4 0l2.1-2.1a1 1 0 0 0 0-1.4L19 4"/><path d="m21 2-9.6 9.6"/><circle cx="7.5" cy="15.5" r="5.5"/></svg>
+            </div>
+            <h3>Password Generator</h3>
+            <p>Create strong, unique passwords with our advanced generator. Customize length and complexity.</p>
+        </div>
+        <div class="card">
+            <div class="icon icon3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap-icon lucide-zap"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+            </div>
+            <h3>Quick Access</h3>
+            <p>Copy passwords to your clipboard instantly. Search and filter to find what you need in seconds.</p>
+        </div>
+        <div class="card">
+            <div class="icon icon4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone-icon lucide-smartphone"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            </div>
+            <h3>Access Anywhere</h3>
+            <p>Use SecureVault on any device. Your passwords sync seamlessly across all platforms.</p>
+        </div>
+        <div class="card">
+            <div class="icon icon5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud-icon lucide-cloud"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>
+            </div>
+            <h3>Secure Cloud Backup</h3>
+            <p>Your encrypted vault is backed up to the cloud. Never lose your passwords again.</p>
+        </div>
+        <div class="card">
+            <div class="icon icon6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-icon lucide-shield"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            </div>
+            <h3>Zero-Knowledge Security</h3>
+            <p>Only you can access your passwords. We never have access to your unencrypted data.</p>
+        </div>
+    </div>
+
+    <div class="ready-card">
+        <h2>Ready to secure your digital life?</h2>
+        <p>Join thousands of users who trust SecureVault with their passwords</p>
+        <a href="pages/signup.html"><button class="btn">Start Securing Your Passwords</button></a>
+    </div>
 </body>
+
+<footer>
+    <hr>
+    <p>© 2026 SecureVault. Your passwords, protected.</p>
+</footer>
 </html>

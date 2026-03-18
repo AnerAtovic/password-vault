@@ -107,3 +107,17 @@
 .blackbox-sm:focus {
 	outline: none;
 }
+
+.logo{
+	inline-size: 40px;
+	block-size: 40px;
+	box-sizing: border-box;
+	background: #2563eb;
+	border-radius: 12px;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}

@@ -3,6 +3,9 @@ import PasswordService from '../services/password.service.js';
 const passwords = [];
 const logoutBtn = document.getElementById('logout-btn');
 const searchInput = document.getElementById('search-input');
+const noPasswords = document.getElementById('no-password');
+const cardContainer = document.getElementById('cards');
+const contentDiv = document.querySelector('.content');
 
 
 // cool little thing
@@ -43,7 +46,12 @@ function loadCards(){
             category: 'Entertainment'
         }
     ];
-    arr.forEach(item => generateCards(item.title, item.username, item.password, item.url, item.category));
+    // arr.forEach(item => generateCards(item.title, item.username, item.password, item.url, item.category));
+    const cardsFromStorage = PasswordService.getAllPasswords();
+    if(cardsFromStorage.length === 0){
+        console.log('No passwords found in storage. Showing empty state.');
+    }
+    updateEmptyState();
 }
 
 
@@ -62,7 +70,6 @@ logoutBtn.addEventListener('click', () => {
 
 // Generate Cards From Passwords And Other Data
 function generateCards(title, user, password, url, category) {
-    const cardContainer = document.getElementById('cards');
     const card = document.createElement('div');
     card.classList.add('card');
     // time of creation of the card or modification is when the card itself is created or modified and not when the password is created or modified because the password can be created a long time ago but the card is created now when the user adds it to the vault
@@ -157,6 +164,7 @@ function generateCards(title, user, password, url, category) {
     
     addEventListenersToCard(card); // each card will get its own event listener because it binds to this instance (each thing in js is a reference)
     cardContainer.prepend(card); // this adds the card to the beggining not the end
+    updateEmptyState();
 }
 
 function addEventListenersToCard(cardElement) {
@@ -178,6 +186,7 @@ function addEventListenersToCard(cardElement) {
             cardElement.remove();
             // remove from storage
             showNotification('Password deleted');
+            updateEmptyState();
         }
     });
 
@@ -227,18 +236,21 @@ function showCards(category) {
     const allCards = document.querySelectorAll('.card');
 
     if(category === 'All') {
-        allCards.forEach(card => card.style.display = 'block');
+        allCards.forEach(card => card.style.display = '');
+        updateEmptyState();
         return;
     }
 
     allCards.forEach(card => {
         const cardCategory = card.querySelector('#categoryId').textContent;
         if(cardCategory === category){
-            card.style.display = 'inline-block';
+            card.style.display = '';
         } else {
             card.style.display = 'none';
         }
     });
+
+    updateEmptyState();
 }
 
 function searchFilter(serachText){
@@ -247,11 +259,22 @@ function searchFilter(serachText){
     allCards.forEach(card => {
         const title = card.querySelector('h3').textContent.toLowerCase();
         if(title.includes(serachText.toLowerCase())){
-            card.style.display = 'block';
+            card.style.display = '';
         } else{ 
             card.style.display = 'none';
         }
     });
+
+    updateEmptyState();
+}
+
+function updateEmptyState() {
+    const cards = cardContainer.querySelectorAll('.card');
+    const hasVisibleCard = Array.from(cards).some((card) => card.style.display !== 'none');
+    const shouldShowEmptyState = cards.length === 0 || !hasVisibleCard;
+
+    noPasswords.classList.toggle('is-visible', shouldShowEmptyState);
+    contentDiv.classList.toggle('is-empty', shouldShowEmptyState);
 }
 
 

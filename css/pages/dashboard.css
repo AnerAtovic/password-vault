@@ -501,6 +501,15 @@ dialog#generate-password-modal svg.icon{
     gap: 20px;
 }
 
+.content.is-empty {
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.content.is-empty #cards {
+    display: none;
+}
+
 dialog {
     background-color: white;
     border: none;
@@ -689,4 +698,53 @@ h1{
     color: #90a1b9;
     font-size: 0.875rem;
     line-height: calc(1.25/.875);
+}
+
+#no-password{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0;
+    width: 100%;
+    min-height: 0;
+    padding: 48px 0;
+    grid-column: 1 / -1;
+    margin: 0;
+}
+
+#no-password.is-visible {
+    display: flex;
+}
+
+#no-password .empty-state-icon {
+    width: 48px;
+    height: 48px;
+    color: oklch(0.446 0.043 257.281);
+    margin: 0 auto 16px;
+}
+
+#no-password .empty-state-title {
+    margin: 0 0 8px;
+    color: oklch(0.704 0.04 256.788);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.555;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+#no-password .empty-state-description {
+    margin: 0;
+    color: oklch(0.554 0.046 257.417);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+@media (max-width: 640px) {
+    #no-password {
+        padding: 32px 0;
+    }
 }

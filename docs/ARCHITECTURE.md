@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Architecture (Module + Service Layer)
 
 This repo is a vanilla HTML/CSS/JS password vault. The codebase uses:
@@ -191,3 +192,8 @@ sequenceDiagram
 - Avoid circular imports (`dashboard.js` importing modals while modals import dashboard). Prefer callbacks/events.
 - “Refresh” means **rerender from service** (not a browser reload).
 - For zero-knowledge, server-side search/filter is not possible without metadata leakage or advanced crypto.
+=======
+# Architecture
+
+This document outlines the architecture of the Password Vault project, detailing the components and their interactions.
+>>>>>>> 7c63e7bd485f2778a236acc71db1aaa2546e94cf

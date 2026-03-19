@@ -46,7 +46,7 @@ function loadCards(){
             category: 'Entertainment'
         }
     ];
-    // arr.forEach(item => generateCards(item.title, item.username, item.password, item.url, item.category));
+    arr.forEach(item => generateCards(item.title, item.username, item.password, item.url, item.category));
     const cardsFromStorage = PasswordService.getAllPasswords();
     if(cardsFromStorage.length === 0){
         console.log('No passwords found in storage. Showing empty state.');

@@ -1,0 +1,28 @@
+{
+  "name": "password-vault",
+  "version": "1.0.0",
+  "description": "Our little password manager project.",
+  "main": "server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnerAtovic/password-vault.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/AnerAtovic/password-vault/issues"
+  },
+  "homepage": "https://github.com/AnerAtovic/password-vault#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

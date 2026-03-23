@@ -1,4 +1,4 @@
-document.addEventListener("submit", function (e) {
+/*document.addEventListener("submit", function (e) {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
@@ -16,4 +16,4 @@ document.addEventListener("submit", function (e) {
     localStorage.setItem("currentUser", JSON.stringify(userExists));
 
     document.getElementById("signinmsg").innerText = "Logged in successfully!";
-});
+});*/

@@ -16,13 +16,18 @@ document.addEventListener("submit", function (e) {
     }
 
     if (pw != pw2) {
+        // TODO MAKE NOTIFICATION DON'T ONLY CHANGE TEXT
         document.getElementById("signupmsg").innerText = "Passwords don't match!";
         return;
     }
+
+    // if password is matches time to use it as master key for encryption 
+    
 
     users.push({ name, email, pw });
 
     localStorage.setItem("users", JSON.stringify(users));
 
-    document.getElementById("signupmsg").innerText = "Registered successfully!";
+    document.getElementById("signupmsg").innerText = "Registered successfully!"; // here you have text for now but change it appropriately 
 });
+
